@@ -75,7 +75,8 @@ export default {
       }
     },
     deleteData(id) {
-      this.data = this.data.filter((data) => data.code !== id);
+      this.data = this.data.filter(data => data.code !== id);
+      this.labels = this.labels.filter(data => data !== id);
     },
     updateTicket () {
       this.data.forEach(ticket => {
