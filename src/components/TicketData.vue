@@ -1,10 +1,10 @@
 <template>
-  <div class="priceData">
-    <div class="priceData__box">
-      <div class="priceData__name">BTC to {{this.data.code}}</div>
-      <div class="priceData__rate">{{this.data.rate}}</div>
+  <div class="ticketData">
+    <div class="ticketData__box">
+      <div class="ticketData__name">BTC to {{this.data.code}}</div>
+      <div class="ticketData__rate">{{this.data.rate}}</div>
       <button
-          class="priceData__btn"
+          class="ticketData__btn"
           @click="deleteData(this.data.code)"
       >
         Delete
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "PriceData",
+  name: "TicketData",
   props: {
     data: {
       required: true,
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.priceData
+.ticketData
   background-color: #fff
   max-width: 200px
   margin-right: 50px

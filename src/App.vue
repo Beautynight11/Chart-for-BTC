@@ -6,7 +6,7 @@
           :get-element='getElement'
       />
       <div class="app__price">
-        <PriceData
+        <TicketData
             v-for="(item, index) in this.data"
             :key="index"
             :data="item"
@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import PriceData from "@/components/PriceData";
+import TicketData from "@/components/TicketData";
 import SelectTicket from "@/components/SelectTicket";
 import LineChart from "@/components/LineChart";
 
 export default {
   name: 'App',
-  components: { LineChart, SelectTicket, PriceData },
+  components: { LineChart, SelectTicket, TicketData },
   data() {
     return {
       info: null,
