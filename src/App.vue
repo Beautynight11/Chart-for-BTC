@@ -35,6 +35,7 @@ export default {
       errorMessage: 'Error',
       interval: '',
       data: [],
+      labels: [],
     }
   },
   methods: {
@@ -64,8 +65,9 @@ export default {
     },
     getElement(el) {
       if (Object.keys(this.info).includes(el)
-          && !this.data.includes(this.info[el])
-      ) {
+          && !this.labels.includes(this.info[el].code))
+      {
+        this.labels.push(el);
         this.data.push({
           code: el,
           rate: this.info[el].rate
