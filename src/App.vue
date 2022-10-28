@@ -59,6 +59,7 @@ export default {
       this.stopTimer();
       this.interval = window.setInterval(() => {
         this.getCounter();
+        this.updateTicket();
       }, 6000)
     },
     getElement(el) {
@@ -73,10 +74,17 @@ export default {
     },
     deleteData(id) {
       this.data = this.data.filter((data) => data.code !== id);
+    },
+    updateTicket () {
+      this.data.forEach(ticket => {
+        ticket.rate = this.info[ticket.code].rate
+      }
+      )
     }
   },
   mounted () {
     this.getCounter();
+    this.updateTicket();
     this.startTimer();
   },
   beforeUnmount () {
