@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.selectInfo
+.selectTicket
   margin-bottom: 50px
 
   &__input

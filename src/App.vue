@@ -59,7 +59,6 @@ export default {
       this.stopTimer();
       this.interval = window.setInterval(() => {
         this.getCounter();
-        this.data = [];
       }, 6000)
     },
     getElement(el) {
