@@ -14,7 +14,7 @@
         />
       </div>
       <div class="app__chart">
-        <LineChart/>
+        <LineChart :chart-data="this.chartData"/>
       </div>
     </div>
   </div>
@@ -34,8 +34,14 @@ export default {
       errored: false,
       errorMessage: 'Error',
       interval: '',
+      time: null,
       data: [],
       labels: [],
+      numbers: [],
+      chartData: {
+        labels: [],
+        datasets: []
+      },
     }
   },
   methods: {
@@ -61,7 +67,8 @@ export default {
       this.interval = window.setInterval(() => {
         this.getCounter();
         this.updateTicket();
-      }, 6000)
+        this.getTime();
+      }, 60000)
     },
     getElement(el) {
       if (Object.keys(this.info).includes(el)
@@ -70,9 +77,10 @@ export default {
         this.labels.push(el);
         this.data.push({
           code: el,
-          rate: this.info[el].rate
+          rate: this.info[el].rate_float
         })
       }
+      this.getData(el);
     },
     deleteData(id) {
       this.data = this.data.filter(data => data.code !== id);
@@ -80,12 +88,28 @@ export default {
     },
     updateTicket () {
       this.data.forEach(ticket => {
-        ticket.rate = this.info[ticket.code].rate
-      }
+        ticket.rate = this.info[ticket.code].rate_float;
+        this.numbers.push(this.info[ticket.code].rate_float)
+      });
+      this.chartData.labels.push(this.time);
+      this.chartData.datasets.forEach(data =>
+          data.data.push(this.info[data.label].rate_float)
       )
+    },
+    getTime() {
+      this.time = new Date().toLocaleTimeString();
+    },
+    getData(el) {
+      this.chartData.datasets.push({
+        label: el,
+        backgroundColor: '#f87979',
+        data: [this.info[el].rate_float],
+        borderColor: '#f87979'
+      })
     }
   },
   mounted () {
+    this.getTime();
     this.getCounter();
     this.updateTicket();
     this.startTimer();

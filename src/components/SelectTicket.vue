@@ -1,11 +1,11 @@
 <template>
   <div class="selectTicket">
-    <div
-        class="selectTicket__input"
-        @click="changeIsShow"
-    >
-      {{this.name}}
-    </div>
+      <div
+          class="selectTicket__input"
+          @click="toggleIsShow"
+      >
+        {{this.name}}
+      </div>
     <div
         class="selectTicket__list"
         v-if="isShow"
@@ -13,7 +13,7 @@
       <div
           v-for="item in info"
           :key="item.id"
-          @click="getElement(item.code); this.isShow = false; this.name=item.code"
+          @click="getElement(item.code); this.isShow = false;"
           class="selectTicket__item"
       >
         {{item.code}}
@@ -38,12 +38,12 @@ export default {
   data() {
     return {
       isShow: false,
-      name: 'Select',
+      name: 'Select...',
       code: null,
     }
   },
   methods: {
-    changeIsShow() {
+    toggleIsShow() {
       this.isShow = !this.isShow;
       this.name = ''
     }
@@ -64,6 +64,7 @@ export default {
     height: 35px
     padding: 5px
     cursor: pointer
+    outline: none
 
   &__list
     background-color: #fff

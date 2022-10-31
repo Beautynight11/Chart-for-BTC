@@ -10,7 +10,6 @@
       :width="width"
       :height="height"
   />
-  <div>{{this.time}}</div>
 </template>
 
 <script>
@@ -67,32 +66,17 @@ export default {
       type: Object,
       default: () => {}
     },
+    // chartData: {
+    //   required: true,
+    //   type: Object
+    // }
 
   },
   data() {
     return {
       chartData: {
         labels: [],
-        datasets: [
-          {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [40, 39, 10, 40, 39, 80, 40],
-            borderColor: '#f87979'
-          },
-          {
-            label: 'Data two',
-            backgroundColor: '#5695f6',
-            data: [1, 2, 3],
-            borderColor: '#5695f6'
-          },
-          {
-            label: 'Data three',
-            backgroundColor: '#56f6b3',
-            data: [4, 5, 6],
-            borderColor: '#56f6b3'
-          },
-        ]
+        datasets: []
       },
       chartOptions: {
         responsive: true
@@ -100,29 +84,6 @@ export default {
       time: null,
       interval: '',
     }
-  },
-  methods: {
-    getTime() {
-      this.time = new Date().toLocaleTimeString();
-    },
-    stopTimer () {
-      if (this.interval) {
-        window.clearInterval(this.interval);
-      }
-    },
-    startTimer () {
-      this.stopTimer();
-      this.interval = window.setInterval(() => {
-        this.getTime();
-      }, 2000)
-    },
-  },
-  mounted() {
-    this.getTime();
-    this.startTimer()
-  },
-  beforeUnmount() {
-    this.stopTimer()
   },
 }
 </script>
