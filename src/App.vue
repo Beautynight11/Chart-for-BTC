@@ -87,6 +87,10 @@ export default {
     deleteData(id) {
       this.data = this.data.filter(data => data.code !== id);
       this.labels = this.labels.filter(data => data !== id);
+      this.chartData =  {
+        labels: [],
+        datasets: [],
+      }
     },
     updateTicket () {
       this.data.forEach(ticket => {
