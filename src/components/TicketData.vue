@@ -3,12 +3,20 @@
     <div class="ticketData__box">
       <div class="ticketData__name">BTC to {{this.data.code}}</div>
       <div class="ticketData__rate">{{this.data.rate}}</div>
-      <button
-          class="ticketData__btn"
-          @click="deleteData(this.data.code)"
-      >
-        Delete
-      </button>
+      <div class="ticketData__btns">
+        <button
+            class="ticketData__btn"
+            @click="getChartData(this.data.code)"
+        >
+          Show chart
+        </button>
+        <button
+            class="ticketData__btn"
+            @click="deleteData(this.data.code)"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +32,10 @@ export default {
     deleteData: {
       type: Function,
       required: true
+    },
+    getChartData: {
+      required: true,
+      type: Function
     }
   },
     data() {
@@ -45,7 +57,6 @@ export default {
   &__box
     border: 1px solid #40206c
     width: 200px
-    height: 200px
     text-align: center
 
   &__name
@@ -58,12 +69,21 @@ export default {
     font-size: 30px
     margin-bottom: 30px
 
+  &__btns
+    display: flex
+    flex-direction: column
+    flex: 1 0 100px
+    width: 100px
+    margin-right: auto
+    margin-left: auto
+
   &__btn
     opacity: .3
     cursor: pointer
     border: 1px solid #000
     background-color: #FFF
     padding: 5px 10px
+    margin-bottom: 10px
 
     &:hover
       opacity: 1

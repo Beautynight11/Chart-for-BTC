@@ -11,10 +11,13 @@
             :key="index"
             :data="item"
             :delete-data="deleteData"
+            :get-chart-data="getData"
         />
       </div>
       <div class="app__chart">
-        <LineChart :chart-data="this.chartData"/>
+        <LineChart
+            :chart-data="this.chartData"
+        />
       </div>
     </div>
   </div>
@@ -37,11 +40,11 @@ export default {
       time: null,
       data: [],
       labels: [],
-      numbers: [],
       chartData: {
         labels: [],
-        datasets: []
+        datasets: [],
       },
+      chartName: null
     }
   },
   methods: {
@@ -66,9 +69,9 @@ export default {
       this.stopTimer();
       this.interval = window.setInterval(() => {
         this.getCounter();
-        this.updateTicket();
         this.getTime();
-      }, 60000)
+        this.updateTicket();
+      }, 10000)
     },
     getElement(el) {
       if (Object.keys(this.info).includes(el)
@@ -80,7 +83,6 @@ export default {
           rate: this.info[el].rate_float
         })
       }
-      this.getData(el);
     },
     deleteData(id) {
       this.data = this.data.filter(data => data.code !== id);
@@ -89,7 +91,6 @@ export default {
     updateTicket () {
       this.data.forEach(ticket => {
         ticket.rate = this.info[ticket.code].rate_float;
-        this.numbers.push(this.info[ticket.code].rate_float)
       });
       this.chartData.labels.push(this.time);
       this.chartData.datasets.forEach(data =>
@@ -100,12 +101,14 @@ export default {
       this.time = new Date().toLocaleTimeString();
     },
     getData(el) {
-      this.chartData.datasets.push({
+      this.chartData.datasets = [{
         label: el,
-        backgroundColor: '#f87979',
+        backgroundColor: '#40206c',
         data: [this.info[el].rate_float],
-        borderColor: '#f87979'
-      })
+        borderColor: '#40206c'
+      }];
+      this.chartName = el;
+      this.chartData.labels = [this.time];
     }
   },
   mounted () {
@@ -180,6 +183,9 @@ body
     display: flex
     justify-content: center
     margin-bottom: 50px
+
+    &__chart
+      margin-bottom: 150px
 
 .container
   margin-left: auto

@@ -66,18 +66,13 @@ export default {
       type: Object,
       default: () => {}
     },
-    // chartData: {
-    //   required: true,
-    //   type: Object
-    // }
-
+    chartData: {
+      required: true,
+      type: Object
+    }
   },
   data() {
     return {
-      chartData: {
-        labels: [],
-        datasets: []
-      },
       chartOptions: {
         responsive: true
       },
@@ -85,5 +80,7 @@ export default {
       interval: '',
     }
   },
+  methods: {
+  }
 }
 </script>
