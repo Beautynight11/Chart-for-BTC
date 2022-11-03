@@ -6,6 +6,12 @@
           :info="this.info"
           :get-element='getElement'
       />
+      <div
+          class="app__text"
+          v-if="this.isShowText"
+          >
+        Please select currency to start
+      </div>
       <div class="app__price">
         <TicketData
             v-for="(item, index) in this.data"
@@ -35,6 +41,7 @@ export default {
   data() {
     return {
       info: null,
+      isShowText: true,
       errored: false,
       errorMessage: 'Error',
       interval: '',
@@ -84,6 +91,7 @@ export default {
           rate: this.info[el].rate_float
         })
       }
+      this.isShowText = false;
     },
     deleteData(id) {
       this.data = this.data.filter(data => data.code !== id);
@@ -91,6 +99,9 @@ export default {
       this.chartData =  {
         labels: [],
         datasets: [],
+      }
+      if (this.data.length < 1) {
+        this.isShowText = true;
       }
     },
     updateTicket () {
@@ -195,6 +206,10 @@ body
   &__title
     font-size: 30px
     margin: 15px 0
+    text-align: center
+
+  &__text
+    font-size: 40px
     text-align: center
 
 .container
