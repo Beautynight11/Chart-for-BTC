@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <div class="container" >
+      <div class="app__title">Bitcoin rate</div>
       <SelectTicket
           :info="this.info"
           :get-element='getElement'
@@ -44,7 +45,7 @@ export default {
         labels: [],
         datasets: [],
       },
-      chartName: null
+      chartName: null,
     }
   },
   methods: {
@@ -71,7 +72,7 @@ export default {
         this.getCounter();
         this.getTime();
         this.updateTicket();
-      }, 10000)
+      }, 30000)
     },
     getElement(el) {
       if (Object.keys(this.info).includes(el)
@@ -190,6 +191,11 @@ body
 
     &__chart
       margin-bottom: 150px
+
+  &__title
+    font-size: 30px
+    margin: 15px 0
+    text-align: center
 
 .container
   margin-left: auto

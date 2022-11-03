@@ -4,7 +4,7 @@
           class="selectTicket__input"
           @click="toggleIsShow"
       >
-        {{this.name}}
+        <span>{{this.name}}</span>
       </div>
     <div
         class="selectTicket__list"
@@ -13,7 +13,9 @@
       <div
           v-for="item in info"
           :key="item.id"
-          @click="getElement(item.code); this.isShow = false;"
+          @click="getElement(item.code);
+          this.isShow = false;
+          this.name = 'Select currency...'"
           class="selectTicket__item"
       >
         {{item.code}}
@@ -38,14 +40,14 @@ export default {
   data() {
     return {
       isShow: false,
-      name: 'Select...',
+      name: 'Select currency...',
       code: null,
     }
   },
   methods: {
     toggleIsShow() {
       this.isShow = !this.isShow;
-      this.name = ''
+      this.isShow ? this.name = '' : this.name = 'Select currency...'
     }
 
   }
@@ -59,12 +61,13 @@ export default {
   &__input
     background-color: #fff
     border: 1px solid #40206c
-    margin-top: 50px
     width: 100%
     height: 35px
     padding: 5px
     cursor: pointer
-    outline: none
+
+    span
+      opacity: .3
 
   &__list
     background-color: #fff

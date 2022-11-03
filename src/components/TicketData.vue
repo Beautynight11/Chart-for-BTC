@@ -4,26 +4,26 @@
       <div class="ticketData__name">BTC to {{this.data.code}}</div>
       <div class="ticketData__rate">{{this.data.rate}}</div>
       <div class="ticketData__btns">
-        <button
-            class="ticketData__btn"
-            @click="getChartData(this.data.code)"
-        >
-          Show chart
-        </button>
-        <button
-            class="ticketData__btn"
-            @click="deleteData(this.data.code)"
-        >
-          Delete
-        </button>
+        <ButtonComponent
+            :data="this.data.code"
+            :click-function="getChartData"
+            name="Show chart"
+        />
+        <ButtonComponent
+            :data="this.data.code"
+            :click-function="deleteData"
+            name="Delete"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ButtonComponent from "@/components/ButtonComponent";
 export default {
   name: "TicketData",
+  components: {ButtonComponent},
   props: {
     data: {
       required: true,
@@ -36,7 +36,7 @@ export default {
     getChartData: {
       required: true,
       type: Function
-    }
+    },
   },
     data() {
       return {
@@ -77,17 +77,4 @@ export default {
     margin-right: auto
     margin-left: auto
 
-  &__btn
-    opacity: .3
-    cursor: pointer
-    border: 1px solid #000
-    background-color: #FFF
-    padding: 5px 10px
-    margin-bottom: 10px
-
-    &:hover
-      opacity: 1
-      color: #FFF
-      border: 1px solid #000
-      background-color: #40206c
 </style>
