@@ -194,6 +194,7 @@ body
   padding: 0
 
 .app
+  margin-bottom: 40px
   &__price
     margin-top: 50px
     display: flex
