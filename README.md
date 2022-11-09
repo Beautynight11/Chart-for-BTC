@@ -1,4 +1,8 @@
-# vue
+# Chart for BTC
+
+This is a small application for showing the value of bitcoin in different currencies. 
+There is also an option to display price changes on the chart, 
+which is updated once a minute.
 
 ## Project setup
 ```
